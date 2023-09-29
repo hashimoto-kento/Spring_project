@@ -6,16 +6,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class FizzBuzzController {
-    // FizzBuzzServiceはクラス fizzBuzzServiceは変数
-    private final FizzBuzzService fizzBuzzService; // インスタンスをプライベートで保持し、そのインスタンスが一度設定されたら再設定されないことを確保するため
 
-    public FizzBuzzController(FizzBuzzService fizzBuzzService) { // コンストラクタ
-        this.fizzBuzzService = fizzBuzzService; // FizzBuzzServiceクラスのインスタンスを受け取り、それをfizzBuzzService
-                                                // メンバー変数に代入。これでコントローラーがFizzBuzzサービスを利用できる
+    private final FizzBuzzService fizzBuzzService;
+
+    public FizzBuzzController(FizzBuzzService fizzBuzzService) { 
+        this.fizzBuzzService = fizzBuzzService; 
+                                                
     }
 
-    @GetMapping("fizzBuzz") // HTTP GETリクエストを処理するためのメソッド
-    public String fizzBuzz(Model model) { // Modelはインターフェース modelは引数、メソッドを呼び出すときに、後ろの()内に入れる値
+    @GetMapping("fizzBuzz") 
+    public String fizzBuzz(Model model) {
         model.addAttribute("result", fizzBuzzService.generateFizzBuzz(0, 100));
         return "fizzBuzz.html";
     }
